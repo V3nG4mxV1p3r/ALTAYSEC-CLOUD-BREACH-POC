@@ -1,2 +1,43 @@
-# ALTAYSEC-CLOUD-BREACH-POC
-A Dockerized, web-based SOC laboratory environment designed for analyzing AWS CloudTrail logs to detect initial access and IAM breaches.
+# 🛡️ AltaySec Blue Team Interactive Labs - Cloud Breach (PoC)
+
+Bu repository, siber güvenlik eğitim platformları için tasarlanmış, sıfır kurulum gerektiren (zero-setup), tarayıcı üzerinden çalışan ve CTF mantığıyla kodlanmış bir Blue Team / Olay Müdahale (Incident Response) laboratuvar konseptidir.
+
+### 🎯 Konsept: "Interactive Cloud Detective"
+
+Kullanıcılar, zafiyetli bir makineyi ayağa kaldırmak yerine, bulut ortamında (AWS) ele geçirilmiş kimlik bilgilerinin loglarını (CloudTrail) analiz ederek siber tehdit avcılığı (Threat Hunting) yaparlar. Yeni nesil eğitim platformlarında (TryHackMe vb.) olduğu gibi, analizciler bulgularını sistemdeki interaktif doğrulama scriptine girerek bayrağı (Flag) elde ederler.
+
+### ✨ Öne Çıkan Özellikler:
+
+*   **Tarayıcı Tabanlı Terminal:** `ttyd` aracı kullanılarak Docker içindeki bash terminali doğrudan web tarayıcısına yansıtılır. SSH bağlantısı gerektirmez.
+*   **Anti-Cheat (Hile Koruması):** Bayrakları (Flag) veren bash scriptleri `shc` ile derlenerek okunamaz makine kodu (Binary) haline getirilmiştir. Analizci, logları gerçekten analiz etmeden bayrağa ulaşamaz.
+*   **Tam İzolasyon:** Her seviye kendi `docker-compose` ağı içinde yalıtılmış olarak çalışır.
+
+### 🚀 Lab Nasıl Çalıştırılır?
+
+Herhangi bir Docker yüklü sistemde, çözmek istediğiniz seviyenin klasörüne (Örn: `Altay_Sec_Cloud_Easy`) girip şu komutları çalıştırmak yeterlidir:
+
+1. Konteyneri inşa edin ve başlatın:
+```bash
+docker-compose up -d --build
+```
+* Tarayıcınızdan terminale erişin (İlgili port üzerinden, örn: http://localhost:8080).
+
+* Analizi bitirdiğinizde terminale ./submit yazarak interaktif sınav sistemini başlatın!
+
+## 🟢 Level 1: Cloud Breach (Kolay)
+Odak Noktası: AWS CloudTrail Log Analizi, İlk Erişim (Initial Access), IAM İhlalleri.
+
+## 📝 Senaryo:
+Altay Tech yazılım ekibinden bir çalışan, AWS Access Key (Erişim Anahtarı) bilgilerini yanlışlıkla GitHub'da herkese açık bir repoya push'lamıştır. Saldırganın bu anahtarlarla sistemimize sızdığından şüpheleniyoruz.
+
+## 🎯 Görevler:
+
+`cloudtrail_easy.json` dosyasını analiz et.
+
+* Saldırganın kendi yetkilerini doğrulamak için tetiklediği `AWS API` olayını (`eventName`) bul.
+
+* Sisteme yetkisiz erişim sağlayan IP adresini (`sourceIPAddress`) bul.
+
+* Saldırganın şirketimizdeki hangi kullanıcının (`userName`) hesabına sızdığını tespit et.
+
+* `./submit` çalıştır ve Flag'i kap.
