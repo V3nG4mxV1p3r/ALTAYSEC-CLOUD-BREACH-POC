@@ -66,7 +66,7 @@ Level 1'deki saldırganın `'dev_ahmet'` hesabını kullandığını tespit etti
 
 ---
 
-### 🔴 Level 3: Privilege Escalation & Exfiltration (Zor)
+## 🔴 Level 3: Privilege Escalation & Exfiltration (Zor)
 
 **Odak Noktası:** İleri Seviye JSON Analizi, IAM Rol İstismarı (AssumeRole), S3 Veri Sızıntısı (Data Exfiltration).
 
