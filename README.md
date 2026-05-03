@@ -27,7 +27,7 @@ docker-compose up -d --build
 ---
 
 ## 🟢 Level 1: Cloud Breach (Kolay)
-Odak Noktası: AWS CloudTrail Log Analizi, İlk Erişim (Initial Access), IAM İhlalleri.
+**Odak Noktası:** AWS CloudTrail Log Analizi, İlk Erişim (Initial Access), IAM İhlalleri.
 
 ## 📝 Senaryo:
 Altay Tech yazılım ekibinden bir çalışan, AWS Access Key (Erişim Anahtarı) bilgilerini yanlışlıkla GitHub'da herkese açık bir repoya push'lamıştır. Saldırganın bu anahtarlarla sistemimize sızdığından şüpheleniyoruz.
@@ -47,7 +47,7 @@ Altay Tech yazılım ekibinden bir çalışan, AWS Access Key (Erişim Anahtarı
 ---
 
 ## 🟡 Level 2: Persistence & Cryptojacking (Orta)
-Odak Noktası: İleri Seviye JSON Analizi, IAM Arka Kapı (Persistence) Tespiti, EC2 İstismarı (Kripto Madencilik).
+**Odak Noktası:** İleri Seviye JSON Analizi, IAM Arka Kapı (Persistence) Tespiti, EC2 İstismarı (Kripto Madencilik).
 
 ## 📝 Senaryo:
 Level 1'deki saldırganın `'dev_ahmet'` hesabını kullandığını tespit ettik. Ancak bu hesap kapatılsa bile saldırganın sistemde kalabilmek için kendine gizli bir "Arka Kapı" (`Persistence`) hesabı oluşturduğunu ve kripto madencilik yapmak için büyük bir sanal sunucu başlattığını düşünüyoruz.
@@ -66,3 +66,22 @@ Level 1'deki saldırganın `'dev_ahmet'` hesabını kullandığını tespit etti
 
 ---
 
+### 🔴 Level 3: Privilege Escalation & Exfiltration (Zor)
+
+**Odak Noktası:** İleri Seviye JSON Analizi, IAM Rol İstismarı (AssumeRole), S3 Veri Sızıntısı (Data Exfiltration).
+
+## 📝 Senaryo:
+Arka kapıyı tespit ettiniz ancak saldırganın içeride geçirdiği sürede sadece madencilik yapmadığını fark ettik. Saldırgan, ele geçirdiği "aws_svc_backup_admin" hesabı üzerinden daha yüksek yetkilere sahip kritik bir role bürünmüş (AssumeRole) ve şirketimizin en mahrem S3 bucket'ından müşteri verilerini sızdırmıştır. Loglar artık çok daha derin ve karmaşık.
+
+## 🎯 Görevler:
+*   `cloudtrail_hard.json` dosyasını analiz et.
+  
+*   Saldırganın hak yükseltmek (`Privilege Escalation`) için büründüğü IAM Rolünün tam ARN'sini (`roleArn`) bul.
+  
+*   Saldırganın sızdırdığı verileri çekerken hangi veri transfer aracını (`userAgent`) kullandığını tespit et.
+
+*   'company-secure-vault' adlı S3 bucket'ından çalınan hassas dosyanın tam adını (`key`) bul.
+  
+*   `./submit` çalıştır ve Final Flag'i kap.
+
+*Developed by Emir - Information Security Specialist / Blue Team Lab Researcher*
