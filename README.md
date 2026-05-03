@@ -24,6 +24,8 @@ docker-compose up -d --build
 
 * Analizi bitirdiğinizde terminale ./submit yazarak interaktif sınav sistemini başlatın!
 
+---
+
 ## 🟢 Level 1: Cloud Breach (Kolay)
 Odak Noktası: AWS CloudTrail Log Analizi, İlk Erişim (Initial Access), IAM İhlalleri.
 
@@ -41,3 +43,26 @@ Altay Tech yazılım ekibinden bir çalışan, AWS Access Key (Erişim Anahtarı
 * Saldırganın şirketimizdeki hangi kullanıcının (`userName`) hesabına sızdığını tespit et.
 
 * `./submit` çalıştır ve Flag'i kap.
+
+---
+
+## 🟡 Level 2: Persistence & Cryptojacking (Orta)
+Odak Noktası: İleri Seviye JSON Analizi, IAM Arka Kapı (Persistence) Tespiti, EC2 İstismarı (Kripto Madencilik).
+
+## 📝 Senaryo:
+Level 1'deki saldırganın `'dev_ahmet'` hesabını kullandığını tespit ettik. Ancak bu hesap kapatılsa bile saldırganın sistemde kalabilmek için kendine gizli bir "Arka Kapı" (`Persistence`) hesabı oluşturduğunu ve kripto madencilik yapmak için büyük bir sanal sunucu başlattığını düşünüyoruz.
+
+## 🎯 Görevler:
+
+`cloudtrail_medium.json` dosyasını analiz et.
+
+* Saldırganın arka kapı olarak oluşturduğu yeni gizli kullanıcının adını (`userName`) bul.
+
+* Bu yeni kullanıcıya erişim anahtarı üretmek için kullanılan API eylemini (`eventName`) tespit et.
+
+* Saldırganın madencilik için başlattığı sunucunun tipini (`instanceType`) bul.
+
+* `./submit` çalıştır ve Flag'i kap.
+
+---
+
